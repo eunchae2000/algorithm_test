@@ -6,7 +6,7 @@ N = int(input())
 info = [list(map(str, input().split())) for _ in range(N)]
 
 # 나이순으로 정렬하기 위해서 리스트의 나이를 비교 // 이름은 입력받은 순서대로 정렬하기 때문에 따로 정렬과정 필요x
-info.sort(key=lambda x:(x[0]))
+info.sort(key=lambda x:int(x[0]))
 
 # 리스트 요소를 하나씩 출력
 for i in info:
