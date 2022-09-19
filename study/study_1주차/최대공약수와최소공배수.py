@@ -15,3 +15,4 @@ def solution(n, m):
             break
     answer.append(maximum)
     return answer
+
