@@ -11,6 +11,7 @@ def solution(n):
 print(solution(10))
 print(solution(5))
 
+# 다시
 # def solution(n):
 #     count = 0
 #     num = 0
