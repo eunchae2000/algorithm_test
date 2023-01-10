@@ -5,8 +5,8 @@ def solution(n):
     for i in range(2, int(sqrt(n+1))+1):
         if i in num:
             num -= set(range(2*i, n+1, i))
-    # return len(num)
-    return num
+    return len(num)
+    # return num
 
 print(solution(10))
 print(solution(5))
