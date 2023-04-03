@@ -1,3 +1,4 @@
+# 알고리즘 연습
 def solution(clothes):
     dict = {}
     answer = 1
