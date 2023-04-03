@@ -1,24 +1,12 @@
-import heapq
-def solution(operations):
-    answer = []
-    heap = []
-
-    for i in range(len(operations)):
-        if i[0] == 'I':
-            heapq.heappush(heap, int(i[2:]))
-        else:
-            if len(heap) == 0:
-                pass
-            elif i[2] == '-':
-                heapq.heappop(heap)
-            else:
-                heap = heapq.nlargest(len(heap), heap)[1:]
-                heapq.heapify(heap)
+def solution(clothes):
+    dict = {}
+    answer = 1
+    for key, value in clothes:
+        dict[value] = dict.get(value, 0) + 1
     
-    if len(heap):
-        answer.append(max(heap))
-        answer.append(min(heap))
-    else:
-        answer.append(0)
-        answer.append(0)
-    return answer
+    for value in dict:
+        answer *= dict[value] + 1
+    
+    return answer -1
+
+print(solution([["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]))
