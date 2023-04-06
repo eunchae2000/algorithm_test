@@ -20,8 +20,14 @@ def dfs(v):
 def bfs(v):
     queue = deque([v])
     bfs_visit[v] = True
-    print(v, end=" ")
-    for i in range(1, n+1):
-        if not bfs_visit[i] and graph[v][i]:
-            queue.append(i)
-            bfs_visit[i] = True
+    while queue:
+        v = queue.popleft()
+        print(v, end=" ")
+        for i in range(1,n+1):
+            if not bfs_visit[i] and graph[v][i]:
+                queue.append(i)
+                bfs_visit[i] = True
+
+dfs(v)
+print()
+bfs(v)
