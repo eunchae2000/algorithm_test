@@ -4,7 +4,7 @@ n = int(input())
 m = int(input())
 network = [[] for _ in range(n+1)]
 visited = [0] * (n+1)
-answer = [1]
+
 for _ in range(m):
     a, b = map(int, input().split())
     network[a] += [b]
