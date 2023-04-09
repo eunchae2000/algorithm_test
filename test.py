@@ -1,32 +1,62 @@
 from collections import deque
-m, n = map(int, input().split())
-graph = [list(map(int, input().split())) for  _ in range(n)]
-queue = deque()
-count = 0
+from itertools import combinations
+from copy import deepcopy
 
-do_x = [-1, 1, 0, 0]
-do_y = [0, 0, -1, 1]
+dx=[1,-1,0,0]
+dy=[0,0,1,-1]
 
-for i in range(n):
-    for j in range(m):
-        if graph[i][j] == 1:
-            queue.append([i, j])
+N,M=map(int,input().split())
+graph=[]
+wall=[]
+virus=[]
+for i in range(N):
+    data=list(map(int,input().split()))
+    for j in range(M):
+        if data[j]==0:
+            wall.append([i,j])
+        elif data[j]==2:
+            virus.append([i,j])
 
-def bfs():
-    while queue:
-        x, y = queue.popleft()
-        for i in range(4):
-            nx = x + do_x[i]
-            ny = y + do_y[i]
-            if 0<= nx < n and 0<= ny < m and graph[nx][ny] == 0:
-                queue.append([nx, ny])
-                graph[nx][ny] = graph[x][y] + 1
+    graph.append(data)
 
-bfs()
-for i in graph:
-    for j in i:
-        if j == 0:
-            print(-1)
-            exit(0)
-    count = max(count, max(i))
-print(count-1)
+wall_case=combinations(wall,3)
+
+answer=0
+
+for walls in wall_case:
+
+    temp=deepcopy(graph)
+    for w in walls:
+        wx,wy=w
+        temp[wx][wy]=1
+    visited=[[False]*M for _ in range(N)]
+    q=deque()
+    for v in virus:
+        vx,vy=v
+        q.append([vx,vy])
+        visited[vx][vy]=True
+    while q:
+        x,y=q.popleft()
+
+        for d in range(4):
+            nx=x+dx[d]
+            ny=y+dy[d]
+
+            if nx<0 or nx>=N or ny<0 or ny>=M:
+                continue
+            if visited[nx][ny]==True:
+                continue
+            if temp[nx][ny]==1:
+                continue
+            visited[nx][ny]=True
+            q.append([nx,ny])
+            temp[nx][ny]=2
+
+    safe=0
+    for x in range(N):
+        safe+=temp[x].count(0)
+
+    answer=max(answer,safe)
+
+
+print(answer)
