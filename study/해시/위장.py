@@ -7,4 +7,4 @@ def solution(clothes):
     for value in dict:
         answer *= dict[value]+1
     
-    return answer -1
+    return answer -1    
