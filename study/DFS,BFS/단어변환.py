@@ -18,8 +18,12 @@ def solution(begin, target, words):
                 for j in range(len(word)):
                     if word[j] != words[i][j]:
                         temp_count += 1
+                        print(word[j])
+                        print(words[i][j])
+                        print(temp_count)
                 if temp_count == 1:
                     queue.append([words[i], count +1])
                     visited[i] = 1
 
     return answer
+print(solution("hit","cog",["hot", "dot", "dog", "lot", "log", "cog"]))
