@@ -1,10 +1,21 @@
-n = int(input())
-d = [0]*(n+1)
-for i in range(2, n+1):
-    d[i] = d[i-1]+1
-    if i%2 == 0:
-        d[i] = min(d[i], d[i//3]+1)
-    if i%3 == 0:
-        d[i] = min(d[i], d[i//2]+1)
+from collections import deque
 
-print(d[n])
+def solution(bridge_length,weight,truck_weights):
+    truck_weights = deque(truck_weights)
+    bridge = deque([0 for _ in range(bridge_length)])
+    time = 0
+    bridge_weight = 0
+    while len(bridge) != 0:
+        out = bridge.popleft()
+        print(out)
+        bridge_weight -= out
+        time += 1
+        if truck_weights:
+            if bridge_weight + truck_weights[0] <= weight:
+                left = truck_weights.popleft()
+                bridge_weight += left
+                bridge.append(left)
+            else:
+                bridge.append(0)
+    return time
+print(solution(2,10,[7,4,5,6]))
