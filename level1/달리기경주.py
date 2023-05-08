@@ -1,6 +1,8 @@
 def solution(player, calling):
     play_dict = {play:index for index, play in enumerate(player)}
+    print(play_dict)
     index_dict = {index:play for index, play in enumerate(player)}
+    print(index_dict)
 
     for i in calling:
         current_index = play_dict[i]
