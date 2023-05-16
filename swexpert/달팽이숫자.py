@@ -1,30 +1,24 @@
 t = int(input())
-dr = [0, 1, 0, -1]
-dc = [1, 0, -1, 0]
-
-for tc in range(1, t+1):
-    N = int(input())
-    snail = [[0]*N for _ in range(N)]
-    r, c = 0, 0
-
-    for n in range(1, N*N + 1):
-        snail[r][c] = n
-        r += dr[dist]
-        c += dc[dist]
-
-        # 범위를 벗어나거나 0이 아닌 다른 값이 이미 있다면, dist 방향 체인지
-        # 근데 이런 경우라면 요소 인덱스를 다시 원위치시켜줘야하므로 빼줘야함
-        # 그런다음 dist의 방향을 바꾸고, 방향 바꿨으면 다시 움직일 수 있도록 행렬 인덱스 업데이트
-        if r < 0 or c < 0 or r >= N or c >= N or snail[r][c] != 0:
-            # 실행취소
-            r -= dr[dist]
-            c -= dc[dist]
-            # dist는 % 4 안해주면 0123, 4567, ... 이런식으로 숫자 커지므로 나머지로 접근
-            dist = (dist + 1) % 4
-            #  다시 gogo
-            r += dr[dist]
-            c += dc[dist]
-
-    print("#{}".format(tc))
-    for row in snail:
-        print(*row)
+for i in range(1, t+1):
+    n = int(input())
+    dx = []
+    dy = []
+    for num in range(n, 0, -1):
+        for _ in range(num):
+            dx.append(0)
+            dy.append(1-(2)*((n-num)%2))
+        for _ in range(num-1):
+            dx.append(1-(2)*((n-num)%2))
+            dy.append(0)
+    arr = [[0]*n for _ in range(n)]
+    x = y = 0
+    for num in range(1, n*n+1):
+        if num == 1:
+            arr[x][y] = 1
+        else:
+            x += dx[num-1]
+            y += dy[num-1]
+            arr[x][y] = num
+    print("#{}".format(i))
+    for answer in arr:
+        print(*answer)

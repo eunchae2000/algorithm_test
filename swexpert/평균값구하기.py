@@ -3,7 +3,8 @@ t = int(input())
 for i in range(t):
     arr = list(map(int, input().split()))
     answer = 0
-    print("# {}".format(i+1))
+    print("#{}".format(i+1), end=" ")
     for j in range(len(arr)):
         answer += arr[j]
-    print((answer/len(arr)))
+    answer = answer/len(arr)
+    print(round(answer))
