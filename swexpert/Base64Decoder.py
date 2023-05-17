@@ -1,5 +1,6 @@
 baseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 base = {i:ord(i)-65 for i in baseString}
+
 for a in baseString.lower():
     base[a] = ord(a)-71
 
@@ -11,11 +12,11 @@ base["-"] = 63
 
 t = int(input())
 for i in range(1, t+1):
-    string = input()
+    input_string = input()
     answer = ""
-    for j in range(0, len(string), 4):
+    for j in range(0, len(input_string), 4):
         temp = ""
-        for k in string[j:j+4]:
+        for k in input_string[j:j+4]:
             temp += format(base[k], 'b').zfill(6)
         for m in range(0, len(temp), 8):
             answer += chr(int(temp[m:m+8], 2))
