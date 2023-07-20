@@ -1,9 +1,7 @@
 from collections import deque
 
 n, m = map(int, input().split())
-maps = []
-for _ in range(n):
-    maps.append(list(map(int, input())))
+maps = [list(map(int, input())) for _ in range(n)]
 
 do_x = [-1, 1, 0, 0]
 do_y = [0, 0, -1, 1]

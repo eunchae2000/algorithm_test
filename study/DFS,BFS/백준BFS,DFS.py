@@ -10,13 +10,14 @@ for _ in range(m):
 dfs_visit = [False] * (n+1)
 bfs_visit = [False] * (n+1)
 
+# 재귀함수 사용 
 def dfs(v):
     dfs_visit[v] = True
     print(v, end=" ")
     for i in range(1, n+1):
         if not dfs_visit[i] and graph[v][i]:
             dfs(i)
-
+# deque 사용
 def bfs(v):
     queue = deque([v])
     bfs_visit[v] = True
