@@ -1,4 +1,5 @@
-n = int(input())
+import sys
+n = int(sys.stdin.readline())
 for _ in range(n):
     arr = list(input())
     result = 0
@@ -7,10 +8,10 @@ for _ in range(n):
             result += 1
         elif i == ')':
             result -= 1
-        if result < 0:
+        if result < 0 :
             print('NO')
             break
-        
+    
     if result == 0:
         print('YES')
     else:
