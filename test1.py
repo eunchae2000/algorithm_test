@@ -1,22 +1,13 @@
 t = int(input())
 for tc in range(1, t+1):
-    n, l = map(int, input().split())
-    score = []
-    kcal = []
-    def dfs(index, taste, kcalo):
-        global answer
-        if kcalo > l:
-            return
-        if taste > answer:
-            answer = taste
-        if index == n:
-            return
-        dfs(index+1, taste+score[index], kcalo+kcal[index])
-        dfs(index+1, taste, kcalo)
-    for i in range(n):
-        s, k = map(int, input().split())
-        score.append(s)
-        kcal.append(k)
-    answer = 0
-    dfs(0, 0, 0)
+    num = int(input())
+    shuffle = list(input().split())
+    answer = ''
+    string1 = shuffle[:num//2]
+    string2 = shuffle[num//2:]
+    for i in range(len(string1)):
+        answer += string1[i] + ' '
+        answer += string2[i] + ' '
+    if num % 2 != 0:
+        answer += shuffle[-1]
     print(f'#{tc} {answer}')
