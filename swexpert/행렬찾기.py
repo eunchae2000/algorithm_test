@@ -1,7 +1,7 @@
 def matrix(x, y):
     i, j = x, y
     row = 1
-    col = 1
+    column = 1
     
     while True:
         x += 1
@@ -10,28 +10,25 @@ def matrix(x, y):
         else:
             x -= 1
             break
-        
     while True:
         y += 1
         if y<n and data[x][y] != 0 and visited[x][y] == False:
-            col += 1
+            column += 1
         else:
             y -= 1
             break
     
-    for a in range(i, x+1):
-        for b in range(j, y+1):
-            visited[a][b] = True
+    for k in range(i, x+1):
+        for l in range(j, y+1):
+            visited[k][l] = True
     
-    return [row, col]
+    return [row, column]
 
-
-t = int(input())
-for tc in range(1, t+1):
+for tc in range(1, 11):
     n = int(input())
     answer = []
     data = [list(map(int, input().split())) for _ in range(n)]
-    visited = [[False]*n for _ in range(n)]
+    visited = [[False] * n for _ in range(n)]
     
     for i in range(n):
         for j in range(n):
@@ -39,8 +36,3 @@ for tc in range(1, t+1):
                 value = matrix(i, j)
                 answer.append(value)
     answer = sorted(answer, key=lambda x:(x[0]*x[1], x[0]))
-    
-    print(f'#{tc} {len(answer)}', end=" ")
-    for j in answer:
-        print(*j, end=" ")
-    print()
