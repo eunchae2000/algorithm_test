@@ -5,8 +5,8 @@ def possible(index, count):
     return False
 
 def queen(index):
+    global answer
     if index == n:
-        global answer
         answer += 1
         return
     for i in range(n):

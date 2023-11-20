@@ -9,5 +9,3 @@ for i in range(1, T+1):
             N = memory[j]
             count += 1
     print('#{}'.format(i), count)
-    
-    

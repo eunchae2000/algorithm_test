@@ -11,7 +11,7 @@ for tc in range(1, t+1):
     for i in range(len(B)-len(A)+1):
         result = 0
         for j in range(len(A)):
-            result += A[j] *B[i+j]
+            result += A[j]*B[i+j]
         arr.append(result)
     
     print(f'#{tc} {max(arr)}')
