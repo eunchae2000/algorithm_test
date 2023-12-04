@@ -1,37 +1,38 @@
 import sys
 input = sys.stdin.readline
 
-def merge_sort(l):
-    if len(l) == 1:
-        return l
+def merge_sort(arr):
+    global answer
     
-    mid = (len(l)+1)//2
+    if len(arr) == 1:
+        return arr
     
-    left = merge_sort(l[:mid])
-    right = merge_sort(l[mid:])
+    mid = (len(arr)+1)//2
     
-    i, j = 0, 0
-    l2 = []
+    left_arr = merge_sort(arr[:mid])
+    right_arr = merge_sort(arr[mid:])
     
-    while i<len(left) and j <len(right):
-        if left[i] < right[j]:
-            l2.append(left[i])
-            answer.append(left[i])
-            i += 1
+    result = []
+    left, right = 0, 0
+    
+    while left<len(left_arr) and right < len(right_arr):
+        if left_arr[left] <  right_arr[right]:
+            result.append(left_arr[left])
+            answer.append(left_arr[left])
+            left += 1
         else:
-            l2.append(right[j])
-            answer.append(right[j])
-            j += 1
-    while i<len(left):
-        l2.append(left[i])
-        answer.append(left[i])
-        i+=1
-    while j<len(right):
-        l2.append(right[j])
-        answer.append(right[j])
-        j+=1
-    return l2
-            
+            result.append(right_arr[right])
+            answer.append(right_arr[right])
+            right += 1
+    
+    result += left_arr[left:]
+    answer += left_arr[left:]
+    
+    result += right_arr[right:]
+    answer += right_arr[right:]
+    
+    return result
+
 n, k = map(int, input().split())
 arr = list(map(int, input().split()))
 answer = []
