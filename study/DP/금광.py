@@ -8,7 +8,7 @@ for _ in range(t):
         dp.append(arr[index:index+m])
         index += m
     
-    for i in range(1, m):ß
+    for i in range(1, m):
         for j in range(n):
             if i == 0:
                 left_up = 0
