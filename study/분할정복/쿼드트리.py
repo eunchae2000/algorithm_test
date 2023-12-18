@@ -19,4 +19,5 @@ def solution(x, y, n):
         print(1, end="")
     elif tree == 0:
         print(0, end="")
+        
 solution(0, 0, n)
