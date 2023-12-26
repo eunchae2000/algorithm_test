@@ -1,15 +1,13 @@
 import heapq
 
 n = int(input())
-stack = []
+heap = []
 for _ in range(n):
     num = int(input())
     if num == 0:
-        if len(stack) == 0:
+        if len(heap) == 0:
             print(0)
         else:
-            max_num = max(stack)
-            print(max_num)
-            heapq.heappop(max_num)
+            print(-(heapq.heappop(heap)))
     else:
-        heapq.heappush(stack, num)
+        heapq.heappush(heap, -num)
