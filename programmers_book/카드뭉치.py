@@ -5,16 +5,12 @@ def solution(cards1, cards2, goal):
     cards1 = deque(cards1)
     cards2 = deque(cards2)
     for word in goal:
-        if len(cards1) != 0:
-            w = cards1[0]
-            if w == word:
-                answer += w
-                cards1.popleft()
-        if len(cards2) != 0:
-            w = cards2[0]
-            if w == word:
-                answer += w
-                cards2.popleft()
+        if cards1 and cards1[0] == word:
+            answer += cards1[0]
+            cards1.popleft()
+        if cards2 and cards2[0] == word:
+            answer += cards2[0]
+            cards2.popleft()
                 
     if answer == ''.join(goal):
         return 'Yes'
