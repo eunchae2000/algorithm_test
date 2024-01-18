@@ -1,22 +1,23 @@
-n = int(input())
-arr = [list(map(int, input())) for _ in range(n)]
+def solution(genres, plays):
+    answer = []
+    genre_dic = {}
+    play_dic = {}
+    
+    for i in range(len(genres)):
+        genre = genres[i]
+        play = plays[i]
+        if genre not in genre_dic:
+            genre_dic[genre] = []
+            play_dic[genre] = 0
+        genre_dic[genre].append((i, play))
+        play_dic[genre] += play
+    
+    sort_arr = sorted(play_dic.items(), key=lambda x:-x[1])
+    
+    for genre, _ in sort_arr:
+        sorted_song = sorted(genre_dic[genre], key=lambda x:(-x[1], x[0]))
+        answer.extend(index for index, _ in sorted_song[:2])
+    
+    return answer
 
-def solution(x, y, n):
-    tree = arr[x][y]
-    for i in range(x, n+x):
-        for j in range(y, n+y):
-            if tree != arr[i][j]:
-                tree = -1
-                break
-    if tree == -1:
-        print("(", end="")
-        solution(x, y, n//2)
-        solution(x, y+n//2, n//2)
-        solution(x+n//2, y, n//2)
-        solution(x+n//2, y+n//2, n//2)
-        print(")", end="")
-    elif tree == 1:
-        print(1, end="")
-    elif tree == 0:
-        print(0, end="")
-solution(0, 0, n)
+print(solution(["classic", "pop", "classic", "classic", "pop"], [500, 600, 150, 800, 2500]))
