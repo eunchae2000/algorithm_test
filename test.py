@@ -1,18 +1,21 @@
-def solution(participant, completion):
-    dic = {}
-    
-    for p in participant:
-        if p in dic:
-            dic[p] += 1
-        else:
-            dic[p] = 1
-    
-    for c in completion:
-        dic[c] -= 1
-            
-    
-    for key in dic.keys():
-        if dic[key] > 0:
-            return key
+n = int(input())
+m = int(input())
+x = list(map(int, input().split()))
+result = sum([i for i in range(n+1)])
 
-print(solution(["leo", "kiki", "eden"], ["eden", "kiki"]))
+count = 0
+
+while True:
+    count += 1
+    answer = 0
+    for i in x:
+        if i-count < 0:
+            answer += (i + (i+count))
+        else:
+            answer+= ((i-count) + i + (i+count))
+            
+
+    if result == answer:
+        print(count)
+        break
+        
