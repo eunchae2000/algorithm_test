@@ -1,12 +1,12 @@
 from collections import deque
 
-def is_vaild(ny, nx, n, m, maps):
+def is_valid(ny, nx, n, m, maps):
     return 0<=ny<n and 0<=nx<m and maps[ny][nx] != 'X'
 
 def append_queue(ny, nx, k, time, visited, q):
     if not visited[ny][nx][k]:
-        visited[ny][nx][k] = True
         q.append((ny, nx, k, time+1))
+        visited[ny][nx][k] = True
 
 def solution(maps):
     n, m = len(maps), len(maps[0])
@@ -18,10 +18,10 @@ def solution(maps):
     
     for i in range(n):
         for j in range(m):
-            if maps[i][j][k] == 'S':
+            if maps[i][j] == 'S':
                 q.append((i, j, 0, 0))
-                visited[i][j][k] = True
-            if maps[i][j][k] == 'E':
+                visited[i][j][0] = True
+            if maps[i][j] == 'E':
                 end_y, end_x = i, j
     
     while q:
@@ -31,12 +31,14 @@ def solution(maps):
             return time
         
         for i in range(4):
-            ny, nx = y + dy[i], x + dx[i]
-            if not is_vaild(ny, nx, n, m, maps):
+            ny, nx = y+dy[i], x+dx[i]
+            if not is_valid(ny, nx, n, m, maps):
                 continue
-            
+        
             if maps[ny][nx] == 'L':
                 append_queue(ny, nx, 1, time, visited, q)
             else:
                 append_queue(ny, nx, k, time, visited, q)
     return -1
+
+print(solution(["SOOOL", "XXXXO", "OOOOO", "OXXXX", "OOOOE"]))
