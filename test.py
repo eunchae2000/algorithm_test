@@ -1,24 +1,17 @@
-def solution(files):
-    answer = []
-    for file in files:
-        head, number, tail = '', '', ''
-        number_check = False
-        
-        for i in range(len(file)):
-            if file[i].isdigit():
-                number += file[i]
-                number_check = True
-            elif not number_check:
-                head += file[i]
-            else:
-                tail += file[i:]
-                break
-        answer.append((head, number, tail))
-        
-    answer.sort(key=lambda x: (x[0].upper(), int(x[1]))) 
+def solution(arr):
+    answer = [0,0]
     
-    return [''.join(temp) for temp in answer]
-
-
-print(solution(["img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"]))
-print(solution(["F-5 Freedom Fighter", "B-50 Superfortress", "A-10 Thunderbolt II", "F-14 Tomcat"]))
+    def compress(x, y, size):
+        initial_value = arr[x][y]
+        for i in range(x, x+size):
+            for j in range(y, y+size):
+                if arr[i][j] != initial_value:
+                    halfsize = size//2
+                    compress(x, y, halfsize)
+                    compress(x, y+halfsize, halfsize)
+                    compress(x+halfsize, y, halfsize)
+                    compress(x+halfsize, y+halfsize, halfsize)
+                    return
+        answer[initial_value] += 1
+    compress(0, 0, len(arr))
+    return answer
